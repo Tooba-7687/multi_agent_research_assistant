@@ -114,3 +114,40 @@ streamlit run ui/app.py
 
 **Tooba Nadeem**
 ML/AI Engineer (in progress)
+
+---
+
+## 📸 Example Output
+
+Below is an example of the generated research report (truncated):
+
+```
+# Impact of AI on healthcare in 2024
+
+## Introduction
+An engaging intro summarizing the topic...
+
+## Key Findings
+- AI adoption increased by X% in clinical settings...
+```
+
+You can find full reports saved under `outputs/reports/` after running the app.
+
+---
+
+## 🔒 Security
+
+- Do NOT commit your `.env` file. It is already listed in `.gitignore`.
+- Keep your `GEMINI_API_KEY` and `TAVILY_API_KEY` private and rotate them if exposed.
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome. Please open an Issue first to discuss major changes and then submit a Pull Request with a clear description of your changes.
+
+---
+
+## 📜 License
+
+This project is provided for educational and portfolio use. Add a license file if you want to permit reuse (for example, `MIT`).
