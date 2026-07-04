@@ -21,49 +21,120 @@ st.set_page_config(
 # ─────────────────────────────────────────
 st.markdown("""
     <style>
+    :root {
+        color-scheme: dark;
+    }
+    .stApp {
+        background: linear-gradient(135deg, #0f172a 0%, #111827 45%, #1f2937 100%);
+    }
+    .block-container {
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        max-width: 1200px;
+    }
     .main-title {
-        font-size: 2.5rem;
-        font-weight: 700;
-        color: #e0e0e0;
+        font-size: 2.7rem;
+        font-weight: 800;
+        color: #f8fafc;
         text-align: center;
-        padding: 1rem 0;
+        padding: 0.2rem 0 0.4rem;
+        letter-spacing: 0.02em;
     }
     .subtitle {
-        font-size: 1.1rem;
-        color: #aaa;
+        font-size: 1.05rem;
+        color: #cbd5e1;
         text-align: center;
-        margin-bottom: 2rem;
+        margin-bottom: 0.2rem;
+    }
+    .hero-card {
+        background: rgba(15, 23, 42, 0.82);
+        border: 1px solid rgba(148, 163, 184, 0.25);
+        border-radius: 18px;
+        padding: 1.2rem 1.4rem;
+        margin-bottom: 1.3rem;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
     }
     .agent-card {
-        background: #23272f;
-        border-left: 4px solid #4CAF50;
-        padding: 1rem;
-        border-radius: 8px;
-        margin: 0.5rem 0;
+        background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95));
+        border: 1px solid rgba(96, 165, 250, 0.25);
+        border-left: 5px solid #38bdf8;
+        padding: 1rem 1rem 1.1rem;
+        border-radius: 14px;
+        margin: 0.4rem 0 0.6rem;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
     }
     .agent-card h4 {
-        color: #ffffff;
-        margin: 0 0 0.5rem 0;
+        color: #f8fafc;
+        margin: 0 0 0.45rem 0;
+        font-size: 1.04rem;
     }
     .agent-card p {
-        color: #ccc;
+        color: #cbd5e1;
         margin: 0;
+        line-height: 1.45;
     }
     .success-box {
-        background: #1e3a2f;
-        border: 1px solid #2d6a4f;
-        border-radius: 8px;
-        padding: 1rem;
+        background: linear-gradient(135deg, rgba(6, 78, 59, 0.95), rgba(4, 47, 46, 0.95));
+        border: 1px solid rgba(74, 222, 128, 0.35);
+        border-radius: 12px;
+        padding: 1rem 1.1rem;
         margin: 1rem 0;
-        color: #d4edda;
+        color: #dcfce7;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
     }
     .error-box {
-        background: #3a1e1e;
-        border: 1px solid #6a2d2d;
-        border-radius: 8px;
-        padding: 1rem;
+        background: linear-gradient(135deg, rgba(69, 10, 10, 0.95), rgba(127, 29, 29, 0.95));
+        border: 1px solid rgba(248, 113, 113, 0.35);
+        border-radius: 12px;
+        padding: 1rem 1.1rem;
         margin: 1rem 0;
-        color: #f8d7da;
+        color: #fee2e2;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+    }
+    div[data-testid="stTextInput"] input,
+    div[data-testid="stTextInput"] textarea {
+        background-color: #111827 !important;
+        color: #f8fafc !important;
+        border: 1px solid #475569 !important;
+        border-radius: 10px !important;
+    }
+    div[data-testid="stTextInput"] label,
+    div[data-testid="stSelectbox"] label {
+        color: #e2e8f0 !important;
+    }
+    div[data-testid="stSelectbox"] div[data-baseweb="select"] > div {
+        background-color: #111827 !important;
+        color: #f8fafc !important;
+        border: 1px solid #475569 !important;
+    }
+    .stButton > button,
+    .stDownloadButton > button {
+        background: linear-gradient(135deg, #2563eb, #38bdf8);
+        color: white;
+        border: none;
+        border-radius: 999px;
+        padding: 0.6rem 1rem;
+        font-weight: 700;
+        box-shadow: 0 6px 18px rgba(37, 99, 235, 0.25);
+    }
+    .stButton > button:hover,
+    .stDownloadButton > button:hover {
+        background: linear-gradient(135deg, #1d4ed8, #0ea5e9);
+        color: white;
+    }
+    .stMarkdown {
+        color: #f8fafc;
+    }
+    .stMarkdown h1,
+    .stMarkdown h2,
+    .stMarkdown h3,
+    .stMarkdown h4 {
+        color: #f8fafc;
+    }
+    .stMarkdown p,
+    .stMarkdown li {
+        color: #e2e8f0;
+        line-height: 1.6;
     }
     </style>
 """, unsafe_allow_html=True)
@@ -71,10 +142,12 @@ st.markdown("""
 # ─────────────────────────────────────────
 # HEADER
 # ─────────────────────────────────────────
-st.markdown('<div class="main-title">🤖 Multi-Agent Research Assistant</div>',
-            unsafe_allow_html=True)
-st.markdown('<div class="subtitle">Powered by Google Gemini + Tavily Search | 3 AI Agents working together</div>',
-            unsafe_allow_html=True)
+st.markdown("""
+<div class="hero-card">
+    <div class="main-title">🤖 Multi-Agent Research Assistant</div>
+    <div class="subtitle">Powered by Google Gemini + Tavily Search | 3 AI Agents working together</div>
+</div>
+""", unsafe_allow_html=True)
 
 st.divider()
 
